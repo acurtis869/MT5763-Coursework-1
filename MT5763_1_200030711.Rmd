@@ -137,4 +137,24 @@ p2 <- BikeWashingtonDC %>%
 grid.arrange(p1, p2, ncol = 2, top = "Average Hourly Bike Rental")
 ```
 
+### Do holidays increase or decrease the demand for rented bikes?
+
+```{r}
+p1 <- ggplot(BikeSeoul) +
+  geom_boxplot(aes(x = Holiday, y = Count))
+p2 <- ggplot(BikeWashingtonDC) +
+  geom_boxplot(aes(x = Holiday, y = Count))
+grid.arrange(p1, p2, ncol = 2)
+```
+
+
+
+
+
+
+
+
+
+
+
 
