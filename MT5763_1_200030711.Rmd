@@ -171,10 +171,28 @@ p2 <- BikeWashingtonDC %>%
 grid.arrange(p1, p2, nrow = 2, top = "Average Hourly Demand for Bikes")
 ```
 
+### Is there an association between bike demand and the three meteorological variables?
 
-
-
-
+#### Air Temperature
+```{r}
+p1 <- BikeSeoul %>%
+  group_by(Temperature) %>%
+  summarise(MeanCount = mean(Count)) %>%
+  ggplot() + 
+  geom_point(aes(x = Temperature, y = MeanCount)) +
+  xlab("Temperature (ºC)") +
+  ylab("Bike Demand") +
+  ggtitle("Seoul")
+p2 <- BikeWashingtonDC %>%
+  group_by(Temperature) %>%
+  summarise(MeanCount = mean(Count)) %>%
+  ggplot() + 
+  geom_point(aes(x = Temperature, y = MeanCount)) +
+  xlab("Temperature (ºC)") +
+  ylab("Bike Demand") +
+  ggtitle("Washington DC")
+grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
+```
 
 
 
