@@ -100,7 +100,7 @@ BikeWashingtonDC <- read.csv("BikeWashingtonDC.csv") %>%
 BikeSeoul %>% 
   group_by(Date) %>%
   summarise(DailyMean = mean(Temperature)) %>%
-  ggplot(aes()) +
+  ggplot() +
   geom_line(aes(x = Date, y = DailyMean)) +
   ylab("Temperature (ºC)") +
   ggtitle("Mean Daily Air Temperature in Seoul")
@@ -111,7 +111,7 @@ BikeWashingtonDC %>%
   filter(year(Date) == 2011) %>%
   group_by(Date) %>%
   summarise(DailyMean = mean(Temperature)) %>%
-  ggplot(aes()) +
+  ggplot() +
   geom_line(aes(x = Date, y = DailyMean)) +
   ylab("Temperature (ºC)") +
   ggtitle("Mean Daily Air Temperature in Washington DC (2011)")
