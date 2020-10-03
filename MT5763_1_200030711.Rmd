@@ -215,7 +215,26 @@ p2 <- BikeWashingtonDC %>%
 grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 ```
 
-
+#### Humidity
+```{r}
+p1 <- BikeSeoul %>%
+  group_by(Humidity) %>%
+  summarise(MeanCount = mean(Count)) %>%
+  ggplot() + 
+  geom_point(aes(x = Humidity, y = MeanCount)) +
+  xlab("Humidity (%)") +
+  ylab("Bike Demand") +
+  ggtitle("Seoul")
+p2 <- BikeWashingtonDC %>%
+  group_by(Humidity) %>%
+  summarise(MeanCount = mean(Count)) %>%
+  ggplot() + 
+  geom_point(aes(x = Humidity, y = MeanCount)) +
+  xlab("Humidity (%)") +
+  ylab("Bike Demand") +
+  ggtitle("Washington DC")
+grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
+```
 
 
 
