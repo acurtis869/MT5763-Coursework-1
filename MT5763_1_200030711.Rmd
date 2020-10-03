@@ -41,11 +41,9 @@ BikeSeoul <- read.csv("BikeSeoul.csv") %>%
                                   hour = Hour)) %>%
   mutate(Holiday = factor(Holiday, 
                           levels = c("Holiday", "No Holiday"),
-                          labels = c("Yes", "No"),
-                          ordered = TRUE)) %>%
+                          labels = c("Yes", "No"))) %>%
   mutate(Season = factor(Season, 
-                         levels = c("Spring", "Summer", "Autumn", "Winter"),
-                         ordered = TRUE))
+                         levels = c("Spring", "Summer", "Autumn", "Winter")))
 ```
 
 
@@ -78,12 +76,10 @@ BikeWashingtonDC <- read.csv("BikeWashingtonDC.csv") %>%
   mutate(WindSpeed = WindSpeed * 67) %>%
   mutate(Season = factor(Season,
                          levels = c(2, 3, 4, 1),
-                         labels = c("Spring", "Summer", "Autumn", "Winter"),
-                         ordered = TRUE)) %>%
+                         labels = c("Spring", "Summer", "Autumn", "Winter"))) %>%
   mutate(Holiday = factor(Holiday,
                           levels = c(1, 0),
-                          labels = c("Yes", "No"),
-                          ordered = TRUE)) %>%
+                          labels = c("Yes", "No"))) %>%
   mutate(Date = as.Date(Date, "%Y-%m-%d")) %>%
   mutate(FullDate = make_datetime(year = year(Date),
                                   month = month(Date),
@@ -235,6 +231,7 @@ p2 <- BikeWashingtonDC %>%
   ggtitle("Washington DC")
 grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 ```
+
 
 
 
