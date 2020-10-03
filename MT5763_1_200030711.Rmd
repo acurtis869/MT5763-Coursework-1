@@ -75,7 +75,7 @@ BikeWashingtonDC <- read.csv("BikeWashingtonDC.csv") %>%
   # Transform Temperature into degrees Celcius
   mutate(Temperature = 47 * Temperature - 8) %>%
   # Transform Windspeed into m/s
-  mutate(Windspeed = Windspeed * 67) %>%
+  mutate(WindSpeed = WindSpeed * 67) %>%
   mutate(Season = factor(Season,
                          levels = c(2, 3, 4, 1),
                          labels = c("Spring", "Summer", "Autumn", "Winter"),
@@ -193,6 +193,8 @@ p2 <- BikeWashingtonDC %>%
   ggtitle("Washington DC")
 grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 ```
+
+
 
 
 
