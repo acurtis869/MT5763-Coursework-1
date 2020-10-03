@@ -68,7 +68,7 @@ BikeWashingtonDC <- read.csv("BikeWashingtonDC.csv") %>%
          Holiday = holiday,
          Temperature = temp,
          Humidity = hum,
-         Windspeed = windspeed,
+         WindSpeed = windspeed,
          Count = cnt) %>%
   # Transform humidity into a percentage
   mutate(Humidity = Humidity * 100) %>%
@@ -193,8 +193,6 @@ p2 <- BikeWashingtonDC %>%
   ggtitle("Washington DC")
 grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 ```
-
-
 
 
 
