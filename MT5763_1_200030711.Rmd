@@ -255,3 +255,21 @@ confint(SeoulLM, level = 0.97)
 confint(WashingtonDCLM, level = 0.97)
 ```
 
+```{r}
+dfPred <- data.frame(Season = "Winter",
+             Temperature = 0,
+             WindSpeed = 0.5,
+             Humidity = 0.2)
+logPred <- predict(SeoulLM,
+        newdata = dfPred,
+        interval = "prediction",
+        level = 0.9)
+exp(logPred)
+```
+```{r}
+logPred <- predict(WashingtonDCLM,
+        newdata = dfPred,
+        interval = "prediction",
+        level = 0.9)
+exp(logPred)
+```
