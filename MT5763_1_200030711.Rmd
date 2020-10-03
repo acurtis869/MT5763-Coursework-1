@@ -13,6 +13,7 @@ Load libraries:
 ```{r, message = FALSE}
 library(tidyverse)
 library(lubridate)
+library(gridExtra)
 ```
 
 ## Data wrangling
@@ -113,11 +114,27 @@ BikeWashingtonDC %>%
   ggplot(aes()) +
   geom_line(aes(x = Date, y = DailyMean)) +
   ylab("Temperature (ºC)") +
-  ggtitle("Mean Daily Air Temperature in Washington DC")
+  ggtitle("Mean Daily Air Temperature in Washington DC (2011)")
 ```
 
-```{r}
-p1 + p2
+### Do seasons affect the average number of rented bikes?
+
+```{r, message = FALSE}
+p1 <- BikeSeoul %>%
+  group_by(Season) %>%
+  summarise(meanCount = mean(Count)) %>%
+  ggplot() + 
+  geom_col(aes(x = Season, y = meanCount)) + 
+  ylab("Count") +
+  ggtitle("Seoul")
+p2 <- BikeWashingtonDC %>%
+  group_by(Season) %>%
+  summarise(meanCount = mean(Count)) %>%
+  ggplot() + 
+  geom_col(aes(x = Season, y = meanCount)) + 
+  ylab("Count") +
+  ggtitle("Washington DC")
+grid.arrange(p1, p2, ncol = 2, top = "Average Hourly Bike Rental")
 ```
 
 
