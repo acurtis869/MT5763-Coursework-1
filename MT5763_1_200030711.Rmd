@@ -234,4 +234,17 @@ grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 
 
 
+## Statistical Modelling
+
+```{r}
+SeoulLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
+              data = BikeSeoul)
+summary(SeoulLM)
+```
+
+```{r}
+WashingtonDCLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
+              data = BikeWashingtonDC)
+summary(WashingtonDCLM)
+```
 
