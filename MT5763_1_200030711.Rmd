@@ -91,8 +91,33 @@ BikeWashingtonDC <- read.csv("BikeWashingtonDC.csv") %>%
 ```
 
 
+## Data Visualisation
 
+### How does air temperature vary over the course of a year?
 
+```{r, message = FALSE}
+BikeSeoul %>% 
+  group_by(Date) %>%
+  summarise(DailyMean = mean(Temperature)) %>%
+  ggplot(aes()) +
+  geom_line(aes(x = Date, y = DailyMean)) +
+  ylab("Temperature (ºC)") +
+  ggtitle("Mean Daily Air Temperature in Seoul")
+```
 
+```{r, message = FALSE}
+BikeWashingtonDC %>% 
+  filter(year(Date) == 2011) %>%
+  group_by(Date) %>%
+  summarise(DailyMean = mean(Temperature)) %>%
+  ggplot(aes()) +
+  geom_line(aes(x = Date, y = DailyMean)) +
+  ylab("Temperature (ºC)") +
+  ggtitle("Mean Daily Air Temperature in Washington DC")
+```
+
+```{r}
+p1 + p2
+```
 
 
