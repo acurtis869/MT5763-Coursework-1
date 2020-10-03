@@ -149,6 +149,28 @@ p2 <- ggplot(BikeWashingtonDC) +
 grid.arrange(p1, p2, ncol = 2, top = "Hourly Bike Rental")
 ```
 
+### How does the time of day affect the demand for rented bikes?
+
+```{r}
+p1 <- BikeSeoul %>%
+  group_by(Hour) %>%
+  summarise(MeanCount = mean(Count)) %>%
+  ggplot() +
+  geom_line(aes(x = Hour, y = MeanCount)) +
+  xlab("Time of Day") +
+  ylab("Demand for Bikes") +
+  ggtitle("Seoul")
+p2 <- BikeWashingtonDC %>%
+  group_by(Hour) %>%
+  summarise(MeanCount = mean(Count)) %>%
+  ggplot() +
+  geom_line(aes(x = Hour, y = MeanCount)) +
+  xlab("Time of Day") +
+  ylab("Demand for Bikes") +
+  ggtitle("Washington DC")
+grid.arrange(p1, p2, nrow = 2, top = "Average Hourly Demand for Bikes")
+```
+
 
 
 
