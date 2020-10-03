@@ -141,10 +141,12 @@ grid.arrange(p1, p2, ncol = 2, top = "Average Hourly Bike Rental")
 
 ```{r}
 p1 <- ggplot(BikeSeoul) +
-  geom_boxplot(aes(x = Holiday, y = Count))
+  geom_boxplot(aes(x = Holiday, y = Count)) +
+  ggtitle("Seoul")
 p2 <- ggplot(BikeWashingtonDC) +
-  geom_boxplot(aes(x = Holiday, y = Count))
-grid.arrange(p1, p2, ncol = 2)
+  geom_boxplot(aes(x = Holiday, y = Count)) +
+  ggtitle("Washington DC")
+grid.arrange(p1, p2, ncol = 2, top = "Hourly Bike Rental")
 ```
 
 
