@@ -194,7 +194,26 @@ p2 <- BikeWashingtonDC %>%
 grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 ```
 
-
+#### Wind Speed
+```{r}
+p1 <- BikeSeoul %>%
+  group_by(WindSpeed) %>%
+  summarise(MeanCount = mean(Count)) %>%
+  ggplot() + 
+  geom_point(aes(x = WindSpeed, y = MeanCount)) +
+  xlab("Wind Speed (m/s)") +
+  ylab("Bike Demand") +
+  ggtitle("Seoul")
+p2 <- BikeWashingtonDC %>%
+  group_by(WindSpeed) %>%
+  summarise(MeanCount = mean(Count)) %>%
+  ggplot() + 
+  geom_point(aes(x = WindSpeed, y = MeanCount)) +
+  xlab("Wind Speed (m/s)") +
+  ylab("Bike Demand") +
+  ggtitle("Washington DC")
+grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
+```
 
 
 
