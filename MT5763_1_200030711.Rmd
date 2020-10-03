@@ -248,3 +248,10 @@ WashingtonDCLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
 summary(WashingtonDCLM)
 ```
 
+```{r}
+confint(SeoulLM, level = 0.97)
+```
+```{r}
+confint(WashingtonDCLM, level = 0.97)
+```
+
