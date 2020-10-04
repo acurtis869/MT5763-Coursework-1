@@ -178,7 +178,11 @@ Both cities here display very similar trends. The lowest demand for bikes is in 
 
 ### Is there an association between bike demand and the three meteorological variables?
 
+To answer this , a plot has been made for each meteorological variable to compare between the cities.
+
 #### Air Temperature
+
+As there are so many datapoints in each dataset, the mean count has been plotted for each temperature. The temperature was recorded to a greater degree of precision in Seoul so there are more datapoints than in Washington DC.
 ```{r}
 p1 <- BikeSeoul %>%
   group_by(Temperature) %>%
@@ -198,8 +202,11 @@ p2 <- BikeWashingtonDC %>%
   ggtitle("Washington DC")
 grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 ```
+There is a fairly linear relationship between the air temperature and the demand for rental bikes in both cities up until about 30ºC. The demand clearly dips after this point in Seoul as the temperature heads towards 40ºC, but it is slightly less clear if this is the case in Washington DC due to the precision the temperatures were recorded to.
 
 #### Wind Speed
+
+A similar plot for wind speed has created to the one above. Once again the data in Seoul were recorded to a slightly higher degree of precision than in Washington DC.
 ```{r}
 p1 <- BikeSeoul %>%
   group_by(WindSpeed) %>%
@@ -219,8 +226,11 @@ p2 <- BikeWashingtonDC %>%
   ggtitle("Washington DC")
 grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 ```
+The trend for the wind speed is less clear than it was for air temperature. Demand seems to be lowest for the low windspeeds and for the higher extremes, and highest in the middle. There is a lot more variation for the high wind speeds, however this may just be because there are less data, and so the means do not reduce the effect of the outliers as much.
 
 #### Humidity
+
+Again, the same plot has been created, this time with humidity along the x-axis.
 ```{r}
 p1 <- BikeSeoul %>%
   group_by(Humidity) %>%
@@ -240,7 +250,8 @@ p2 <- BikeWashingtonDC %>%
   ggtitle("Washington DC")
 grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
 ```
-
+The plot for the Washington DC dataset shows a clear linear trend that demand for bikes drops as humidity increases from 20% up to 100%. There are a few points of low demand with low humidity but there are not much data here so it is difficult to determine if this is significant or not.
+The Seoul dataset follows a slightly different pattern. There is some high demand during low humidity around 10% (although there are not many data here) and then it is fairly constant from 15% to 75%. Demand then seems to drop fairly linearly between 75% up to 100%.
 
 
 ## Statistical Modelling
