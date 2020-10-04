@@ -140,6 +140,7 @@ The plots show a similar pattern in that summer is the season with the highest a
 
 ### Do holidays increase or decrease the demand for rented bikes?
 
+To compare the effect of holidays, a box-plot has been created for each dataset, each split by whether it is a holiday or not.
 ```{r}
 p1 <- ggplot(BikeSeoul) +
   geom_boxplot(aes(x = Holiday, y = Count)) +
@@ -149,6 +150,7 @@ p2 <- ggplot(BikeWashingtonDC) +
   ggtitle("Washington DC")
 grid.arrange(p1, p2, ncol = 2, top = "Hourly Bike Rental")
 ```
+In Seoul there is a slight decrease in demand for bikes when it is a holiday. The median and upper quartile are both slightly lower for holidays but there is still a lot of crossover between the two groups. The difference in Washington DC follows the same trend with there being lower demand on holidays, but the difference is even less pronounced.
 
 ### How does the time of day affect the demand for rented bikes?
 
