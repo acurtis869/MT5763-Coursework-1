@@ -92,6 +92,7 @@ BikeWashingtonDC <- read.csv("BikeWashingtonDC.csv") %>%
 
 ### How does air temperature vary over the course of a year?
 
+To get a good sense of how the air temperature changes, a plot has been created which shows the mean temperature for every day within the Seoul dataset.
 ```{r, message = FALSE}
 BikeSeoul %>% 
   group_by(Date) %>%
@@ -101,7 +102,8 @@ BikeSeoul %>%
   ylab("Temperature (ºC)") +
   ggtitle("Mean Daily Air Temperature in Seoul")
 ```
-
+This plot shows that the temperature is fairly low in the winter months but then climbs steadily through the year to a peak just over 30ºC around August. The temperature then falls at a similar rate to how it climbed as it falls back to around 0ºC.
+The same plot has been created for the Washington DC dataset, but with just one of the two years selected so that it is easier to compare with Seoul.
 ```{r, message = FALSE}
 BikeWashingtonDC %>% 
   filter(year(Date) == 2011) %>%
@@ -110,8 +112,9 @@ BikeWashingtonDC %>%
   ggplot() +
   geom_line(aes(x = Date, y = DailyMean)) +
   ylab("Temperature (ºC)") +
-  ggtitle("Mean Daily Air Temperature in Washington DC (2011)")
+  ggtitle("Mean Daily Air Temperature in Washington DC")
 ```
+The Washington plot follows a very similar trend to the one for Seoul. It also climbs steadily from 0ºC around January to just over 30ºC in August and then falls back steadily. The main difference between the plots is that the daily temperature variation is a lot higher in Washington. This can be seen by the sharp peaks and troughs every few days, whereas the Seoul temperature seems a lot more consistent, especially in the later half of the year.
 
 ### Do seasons affect the average number of rented bikes?
 
