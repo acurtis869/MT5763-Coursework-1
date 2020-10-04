@@ -118,6 +118,7 @@ The Washington plot follows a very similar trend to the one for Seoul. It also c
 
 ### Do seasons affect the average number of rented bikes?
 
+This question is best answered by creating a bar chart of the counts for each season and comparing.
 ```{r, message = FALSE}
 p1 <- BikeSeoul %>%
   group_by(Season) %>%
@@ -135,6 +136,7 @@ p2 <- BikeWashingtonDC %>%
   ggtitle("Washington DC")
 grid.arrange(p1, p2, ncol = 2, top = "Average Hourly Bike Rental")
 ```
+The plots show a similar pattern in that summer is the season with the highest average number of bike rentals, and winter is the season with the lowest. Winter is particularly low for the Seoul dataset, with only a third the number of the next lowest - spring. Autumn is the second most popular season in Seoul whereas spring is in Washington DC. However it is much closer between spring and autumn in Washington DC than it is in Seoul.
 
 ### Do holidays increase or decrease the demand for rented bikes?
 
