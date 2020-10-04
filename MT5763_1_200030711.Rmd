@@ -154,6 +154,7 @@ In Seoul there is a slight decrease in demand for bikes when it is a holiday. Th
 
 ### How does the time of day affect the demand for rented bikes?
 
+To visualise the effect of the time of day on demand for bikes, a plot has been made of the average demand for bikes every hour of the day. The plots are arranged on top of each other to compare between the two.
 ```{r}
 p1 <- BikeSeoul %>%
   group_by(Hour) %>%
@@ -173,6 +174,7 @@ p2 <- BikeWashingtonDC %>%
   ggtitle("Washington DC")
 grid.arrange(p1, p2, nrow = 2, top = "Average Hourly Demand for Bikes")
 ```
+Both cities here display very similar trends. The lowest demand for bikes is in the early hours of the morning around 04:00 which then rises to an initial peak at 08:00 (perhaps for the commute to work). The demand then falls to a fairly steady level around midday and then peaks in the midafternoon. This peak is at 18:00 in Seoul whereas it is at 17:00 in Washington DC which perhaps points to a difference in the working hours of the day between the cities. The demand then falls back down towards the evening, although it falls slightly more steeply in Washington DC than it does in Seoul.
 
 ### Is there an association between bike demand and the three meteorological variables?
 
