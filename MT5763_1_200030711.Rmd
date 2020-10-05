@@ -297,6 +297,9 @@ plot(WashingtonDCLM, 2)
 The plots here show slightly bigger violations to the assumptions, but once again they are not too bad. The confidence intervals are therefore somewhat reliable for this linear model, although perhaps less so than they are for the Seoul model.
 
 ### Making predictions
+
+Using the linear models above, the following predictions can be made.
+For the Seoul dataset:
 ```{r}
 dfPred <- data.frame(Season = "Winter",
              Temperature = 0,
@@ -308,6 +311,8 @@ logPred <- predict(SeoulLM,
         level = 0.9)
 exp(logPred)
 ```
+This is a very wide interval so would not be much use in practice. This is mainly due to the poor fit of the model, but it also wider because a prediction interval has been used rather than a confidence interval.
+Doing the same for the Washington DC dataset:
 ```{r}
 logPred <- predict(WashingtonDCLM,
         newdata = dfPred,
@@ -315,3 +320,5 @@ logPred <- predict(WashingtonDCLM,
         level = 0.9)
 exp(logPred)
 ```
+This interval is also very wide for the same reasons as before. Again, it would therefore not be very useful to make decisions based on this. 
+Comparing between the two models, the predictions for bike demand in Washington DC is a lot lower than it is in Seoul, however there is still quite a lot of crossover between the two intervals as they are so wide.
