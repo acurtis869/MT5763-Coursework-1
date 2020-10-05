@@ -273,12 +273,28 @@ summary(WashingtonDCLM)
 The results of this linear model follow the same general pattern as those for the Seoul data. However, in Washington DC, all predictor variables are significant. Interestingly, the effect of summer compared to spring is negative and the effect of autumn and winter is positive, contrary to what the bar charts showed earlier. This perhaps suggests there are some confounding factors affecting this. The rest of the coefficients follow the same pattern as those for Seoul. The R-squared is much lower for this model which suggests it is an even worse fit than the Seoul model and so predictions made using this may not be very accurate.
 
 ### Confidence interval for the coefficients
+
+A 97% confidence interval has been calculated for the regression coefficients. For the Seoul model:
 ```{r}
 confint(SeoulLM, level = 0.97)
 ```
+And for the Washington DC model:
 ```{r}
 confint(WashingtonDCLM, level = 0.97)
 ```
+These confidence intervals are calculated under the assumption that the residuals of the model are normally distributed and homoscedastic. These assumptions can be checked using the following plots.
+For the Seoul model:
+```{r}
+plot(SeoulLM, 1)
+plot(SeoulLM, 2)
+```
+The Q-Q plot shows that the residuals are somewhat normal (although not at the lower end), however they do appear to have fairly constant variance. Therefore, the assumptions have not violated the assumptions and the confidence intervals are fairly reliable.
+Repeating for the Washington DC dataset:
+```{r}
+plot(WashingtonDCLM, 1)
+plot(WashingtonDCLM, 2)
+```
+The plots here show slightly bigger violations to the assumptions, but once again they are not too bad. The confidence intervals are therefore somewhat reliable for this linear model, although perhaps less so than they are for the Seoul model.
 
 ### Making predictions
 ```{r}
