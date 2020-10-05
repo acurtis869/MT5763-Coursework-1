@@ -5,7 +5,7 @@ date: "03/10/2020"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, fig.align='center'}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
@@ -100,8 +100,9 @@ BikeSeoul %>%
   ggplot() +
   geom_line(aes(x = Date, y = DailyMean)) +
   ylab("Temperature (ºC)") +
-  ggtitle("Mean Daily Air Temperature in Seoul")
+  ggtitle("Mean Daily Air Temperature in Seoul Through the Year")
 ```
+
 This plot shows that the temperature is fairly low in the winter months but then climbs steadily through the year to a peak just over 30ºC around August. The temperature then falls at a similar rate to how it climbed as it falls back to around 0ºC.
 The same plot has been created for the Washington DC dataset, but with just one of the two years selected so that it is easier to compare with Seoul.
 ```{r}
@@ -112,8 +113,9 @@ BikeWashingtonDC %>%
   ggplot() +
   geom_line(aes(x = Date, y = DailyMean)) +
   ylab("Temperature (ºC)") +
-  ggtitle("Mean Daily Air Temperature in Washington DC")
+  ggtitle("Mean Daily Air Temperature in Washington DC Through the Year")
 ```
+
 The Washington plot follows a very similar trend to the one for Seoul. It also climbs steadily from 0ºC around January to just over 30ºC in August and then falls back steadily. The main difference between the plots is that the daily temperature variation is a lot higher in Washington. This can be seen by the sharp peaks and troughs every few days, whereas the Seoul temperature seems a lot more consistent, especially in the later half of the year.
 
 ### Do seasons affect the average number of rented bikes?
@@ -136,8 +138,9 @@ p2 <- BikeWashingtonDC %>%
   ylab("Count") +
   ggtitle("Washington DC")
 # Arrange plots side by side
-grid.arrange(p1, p2, ncol = 2, top = "Average Hourly Bike Rental")
+grid.arrange(p1, p2, ncol = 2, top = "Average Hourly Bike Rental by Season")
 ```
+
 The plots show a similar pattern in that summer is the season with the highest average number of bike rentals, and winter is the season with the lowest. Winter is particularly low for the Seoul dataset, with only a third the number of the next lowest - spring. Autumn is the second most popular season in Seoul whereas spring is in Washington DC. However it is much closer between spring and autumn in Washington DC than it is in Seoul.
 
 ### Do holidays increase or decrease the demand for rented bikes?
@@ -152,8 +155,9 @@ p2 <- ggplot(BikeWashingtonDC) +
   geom_boxplot(aes(x = Holiday, y = Count)) +
   ggtitle("Washington DC")
 # Arrange plots side by side
-grid.arrange(p1, p2, ncol = 2, top = "Hourly Bike Rental")
+grid.arrange(p1, p2, ncol = 2, top = "Hourly Bike Rental by Holiday")
 ```
+
 In Seoul there is a slight decrease in demand for bikes when it is a holiday. The median and upper quartile are both slightly lower for holidays but there is still a lot of crossover between the two groups. The difference in Washington DC follows the same trend with there being lower demand on holidays, but the difference is even less pronounced.
 
 ### How does the time of day affect the demand for rented bikes?
@@ -178,13 +182,15 @@ p2 <- BikeWashingtonDC %>%
   ylab("Demand for Bikes") +
   ggtitle("Washington DC")
 # Arrange plots one on top of the other
-grid.arrange(p1, p2, nrow = 2, top = "Average Hourly Demand for Bikes")
+grid.arrange(p1, p2, nrow = 2,
+             top = "Average Hourly Demand for Bikes by Time of Day")
 ```
+
 Both cities here display very similar trends. The lowest demand for bikes is in the early hours of the morning around 04:00 which then rises to an initial peak at 08:00 (perhaps for the commute to work). The demand then falls to a fairly steady level around midday and then peaks in the midafternoon. This peak is at 18:00 in Seoul whereas it is at 17:00 in Washington DC which perhaps points to a difference in the working hours of the day between the cities. The demand then falls back down towards the evening, although it falls slightly more steeply in Washington DC than it does in Seoul.
 
 ### Is there an association between bike demand and the three meteorological variables?
 
-To answer this , a plot has been made for each meteorological variable to compare between the cities.
+To answer this, a plot has been made for each meteorological variable to compare between the cities.
 
 #### Air Temperature
 
@@ -208,8 +214,9 @@ p2 <- BikeWashingtonDC %>%
   ylab("Bike Demand") +
   ggtitle("Washington DC")
 # Arrange plots one on top of the other
-grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
+grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes by Temperature")
 ```
+
 There is a fairly linear relationship between the air temperature and the demand for rental bikes in both cities up until about 30ºC. The demand clearly dips after this point in Seoul as the temperature heads towards 40ºC, but it is slightly less clear if this is the case in Washington DC due to the precision the temperatures were recorded to.
 
 #### Wind Speed
@@ -234,8 +241,9 @@ p2 <- BikeWashingtonDC %>%
   ylab("Bike Demand") +
   ggtitle("Washington DC")
 # Arrange plots one on top of the other
-grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
+grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes by Wind Speed")
 ```
+
 The trend for the wind speed is less clear than it was for air temperature. Demand seems to be lowest for the low windspeeds and for the higher extremes, and highest in the middle. There is a lot more variation for the high wind speeds, however this may just be because there are less data, and so the means do not reduce the effect of the outliers as much.
 
 #### Humidity
@@ -260,8 +268,9 @@ p2 <- BikeWashingtonDC %>%
   ylab("Bike Demand") +
   ggtitle("Washington DC")
 # Arrange plots one on top of the other
-grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes")
+grid.arrange(p1, p2, top = "Average Hourly Demand for Bikes by Humidity")
 ```
+
 The plot for the Washington DC dataset shows a clear linear trend that demand for bikes drops as humidity increases from 20% up to 100%. There are a few points of low demand with low humidity but there are not much data here so it is difficult to determine if this is significant or not.
 The Seoul dataset follows a slightly different pattern. There is some high demand during low humidity around 10% (although there are not many data here) and then it is fairly constant from 15% to 75%. Demand then seems to drop fairly linearly between 75% up to 100%.
 
@@ -276,6 +285,7 @@ SeoulLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
               data = BikeSeoul)
 summary(SeoulLM)
 ```
+
 The summary of the linear model shows that almost all predictor varaibles are statistically significant. The only one which was not was the Summer factor of the Season variable which perhaps points to summer and spring having similar effects. The estimated coefficients generally agree with the previous analysis. Namely, that winter and high humidity reduces bike demand, and high temperature and wind speed generally increase demand. However, as seen by the plots, this relationship was not entirely linear so a quadratic plot might be more useful here. The R-squared is fairly low at below 0.5, so the model is not a great fit and so predictions made using it will not be very accurate neccessarily.
 The same linear model is fitted for the Washington DC data.
 ```{r}
@@ -284,6 +294,7 @@ WashingtonDCLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
               data = BikeWashingtonDC)
 summary(WashingtonDCLM)
 ```
+
 The results of this linear model follow the same general pattern as those for the Seoul data. However, in Washington DC, all predictor variables are significant. Interestingly, the effect of summer compared to spring is negative and the effect of autumn and winter is positive, contrary to what the bar charts showed earlier. This perhaps suggests there are some confounding factors affecting this. The rest of the coefficients follow the same pattern as those for Seoul. The R-squared is much lower for this model which suggests it is an even worse fit than the Seoul model and so predictions made using this may not be very accurate.
 
 ### Confidence interval for the coefficients
@@ -302,12 +313,14 @@ For the Seoul model:
 plot(SeoulLM, 1)
 plot(SeoulLM, 2)
 ```
+
 The Q-Q plot shows that the residuals are somewhat normal (although not at the lower end), however they do appear to have fairly constant variance. Therefore, the assumptions have not violated the assumptions and the confidence intervals are fairly reliable.
 Repeating for the Washington DC dataset:
 ```{r}
 plot(WashingtonDCLM, 1)
 plot(WashingtonDCLM, 2)
 ```
+
 The plots here show slightly bigger violations to the assumptions, but once again they are not too bad. The confidence intervals are therefore somewhat reliable for this linear model, although perhaps less so than they are for the Seoul model.
 
 ### Making predictions
