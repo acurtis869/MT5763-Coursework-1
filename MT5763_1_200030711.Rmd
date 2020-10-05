@@ -256,17 +256,20 @@ The Seoul dataset follows a slightly different pattern. There is some high deman
 
 ## Statistical Modelling
 
+Fitting a linear model with log count as the response variable, and season and the three meteorological variables as predictors.
 ```{r}
 SeoulLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
               data = BikeSeoul)
 summary(SeoulLM)
 ```
-
+The summary of the linear model shows that almost all predictor varaibles are statistically significant. The only one which was not was the Summer factor of the Season variable which perhaps points to summer and spring having similar effects. The estimated coefficients generally agree with the previous analysis. Namely, that winter and high humidity reduces bike demand, and high temperature and wind speed generally increase demand. However, as seen by the plots, this relationship was not entirely linear so a quadratic plot might be more useful here. The R-squared is fairly low at below 0.5, so the model is not a great fit and so predictions made using it will not be very accurate neccessarily.
+The same linear model is fitted for the Washington DC data.
 ```{r}
 WashingtonDCLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
               data = BikeWashingtonDC)
 summary(WashingtonDCLM)
 ```
+The results of this linear model follow the same general pattern as those for the Seoul data. However, in Washington DC, all predictor variables are significant. Interestingly, the effect of summer compared to spring is negative and the effect of autumn and winter is positive, contrary to what the bar charts showed earlier. This perhaps suggests there are some confounding factors affecting this. The rest of the coefficients follow the same pattern as those for Seoul. The R-squared is much lower for this model which suggests it is an even worse fit than the Seoul model and so predictions made using this may not be very accurate.
 
 ```{r}
 confint(SeoulLM, level = 0.97)
