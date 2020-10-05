@@ -221,7 +221,7 @@ There is a fairly linear relationship between the air temperature and the demand
 
 #### Wind Speed
 
-A similar plot for wind speed has created to the one above. Once again the data in Seoul were recorded to a slightly higher degree of precision than in Washington DC.
+A similar plot for wind speed has been created to the one above. Once again the data in Seoul were recorded to a slightly higher degree of precision than in Washington DC.
 ```{r}
 # Create two plots
 p1 <- BikeSeoul %>%
@@ -286,7 +286,7 @@ SeoulLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
 summary(SeoulLM)
 ```
 
-The summary of the linear model shows that almost all predictor varaibles are statistically significant. The only one which was not was the Summer factor of the Season variable which perhaps points to summer and spring having similar effects. The estimated coefficients generally agree with the previous analysis. Namely, that winter and high humidity reduces bike demand, and high temperature and wind speed generally increase demand. However, as seen by the plots, this relationship was not entirely linear so a quadratic plot might be more useful here. The R-squared is fairly low at below 0.5, so the model is not a great fit and so predictions made using it will not be very accurate neccessarily.
+The summary of the linear model shows that almost all predictor varaibles are statistically significant. The only one which was not was the Summer factor of the Season variable which perhaps points to summer and spring having similar effects. The estimated coefficients generally agree with the previous analysis. Namely, that winter and high humidity reduces bike demand, and high temperature and wind speed generally increase demand. However, as seen by the plots, this relationship was not entirely linear so a quadratic plot might be more useful here. The R-squared is fairly low at below 0.5, so the model is not a great fit and so predictions made using it will not neccessarily be very accurate.
 The same linear model is fitted for the Washington DC data.
 ```{r}
 # Fit linear model
@@ -314,7 +314,7 @@ plot(SeoulLM, 1)
 plot(SeoulLM, 2)
 ```
 
-The Q-Q plot shows that the residuals are somewhat normal (although not at the lower end), however they do appear to have fairly constant variance. Therefore, the assumptions have not violated the assumptions and the confidence intervals are fairly reliable.
+The Q-Q plot shows that the residuals are somewhat normal (although not at the lower end), however they do appear to have fairly constant variance. Therefore, the assumptions have not massively violated the assumptions and the confidence intervals are fairly reliable.
 Repeating for the Washington DC dataset:
 ```{r}
 plot(WashingtonDCLM, 1)
