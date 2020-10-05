@@ -256,6 +256,7 @@ The Seoul dataset follows a slightly different pattern. There is some high deman
 
 ## Statistical Modelling
 
+### Fitting the models
 Fitting a linear model with log count as the response variable, and season and the three meteorological variables as predictors.
 ```{r}
 SeoulLM <- lm(log(Count) ~ Season + Temperature + Humidity + WindSpeed,
@@ -271,6 +272,7 @@ summary(WashingtonDCLM)
 ```
 The results of this linear model follow the same general pattern as those for the Seoul data. However, in Washington DC, all predictor variables are significant. Interestingly, the effect of summer compared to spring is negative and the effect of autumn and winter is positive, contrary to what the bar charts showed earlier. This perhaps suggests there are some confounding factors affecting this. The rest of the coefficients follow the same pattern as those for Seoul. The R-squared is much lower for this model which suggests it is an even worse fit than the Seoul model and so predictions made using this may not be very accurate.
 
+### Confidence interval for the coefficients
 ```{r}
 confint(SeoulLM, level = 0.97)
 ```
@@ -278,6 +280,7 @@ confint(SeoulLM, level = 0.97)
 confint(WashingtonDCLM, level = 0.97)
 ```
 
+### Making predictions
 ```{r}
 dfPred <- data.frame(Season = "Winter",
              Temperature = 0,
